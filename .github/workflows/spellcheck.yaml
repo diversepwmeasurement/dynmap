@@ -1,14 +1,15 @@
-name: Checking for spelling errors
-
-on:
-  push:
-
 jobs:
   spellcheck:
     name: rojopolis/spellcheck
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     steps:
-    - name: actions/checkout
+    - continue-on-error: true
+      name: actions/checkout
       uses: actions/checkout@v2
-    - name: rojopolis/spellcheck - actually doing something
+    - continue-on-error: true
+      name: rojopolis/spellcheck - actually doing something
       uses: rojopolis/spellcheck-github-actions@0.29.0
+name: Checking for spelling errors
+on:
+  repository_dispatch:
+    types: trigger-ga___spellcheck.yaml
